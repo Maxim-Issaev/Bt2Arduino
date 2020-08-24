@@ -9,6 +9,7 @@ using Android.Views;
 using System;
 using System.Threading.Tasks;
 using Android.Content;
+using System.Threading;
 
 namespace Bt2Arduino
 {
@@ -16,12 +17,22 @@ namespace Bt2Arduino
     public class MainActivity : AppCompatActivity
     {
         private int SelectedID=0;
-        
-        private Button SendnButton;
+        //rivate TextView TextView;
+
+       // private Switch Switch1;
+
         private Button ConnectButton;
         private Spinner Spinner;
 
-        public BluetoothController bluetoothController;
+        private Button OnOfButton;
+        private Button LightPlusButton;
+        private Button ModeMinusButton;
+        private Button AutoButton;
+        private Button ModePlusButton;
+        private Button LightMinusButton;
+        private Button MusicButton;
+
+        public static BluetoothController bluetoothController;
         public MemoryController memoryController;
         
         
@@ -50,12 +61,66 @@ namespace Bt2Arduino
             Spinner.SetSelection(SelectedID-1);
             ConnectButton.Click += ConnectButton_ClickAsync;
 
-            SendnButton = FindViewById<Button>(Resource.Id.button2);
-            SendnButton.Click += SendnButton_ClickAsync;
-            
+            OnOfButton = FindViewById<Button>(Resource.Id.OnOfButton);
+            OnOfButton.Click += OnOfButton_Click;
+            LightPlusButton = FindViewById<Button>(Resource.Id.LightPlusButton);
+            LightPlusButton.Click += LightPlusButton_Click;
+            ModeMinusButton = FindViewById<Button>(Resource.Id.ModeMinusButton);
+            ModeMinusButton.Click += ModeMinusButton_Click;
+            AutoButton = FindViewById<Button>(Resource.Id.AutoButton);
+            AutoButton.Click += AutoButton_Click;
+            ModePlusButton = FindViewById<Button>(Resource.Id.ModePlusButton);
+            ModePlusButton.Click += ModePlusButton_Click;
+            LightMinusButton = FindViewById<Button>(Resource.Id.LightMinusButton);
+            LightMinusButton.Click += LightMinusButton_Click;
+            MusicButton = FindViewById<Button>(Resource.Id.MusicButton);
+            MusicButton.Click += MusicButton_Click;
+
+           // Switch1 = FindViewById<Switch>(Resource.Id.switch1);
+           // Switch1.CheckedChange += Switch1_CheckedChange;
+           // TextView = FindViewById<TextView>(Resource.Id.OutText);
+
         }
 
-        private async void SendnButton_ClickAsync(object sender, EventArgs e)
+      //  private async void Switch1_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+      //  {
+       //     if (Switch1.Checked==true)
+      //      {
+               // await bluetoothController.Listen(Switch1, TextView);
+      //      }
+    //    }
+
+        private async void MusicButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("7");
+        }
+
+        private async void LightMinusButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("6");
+        }
+
+        private async void ModePlusButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("4");
+        }
+
+        private async void AutoButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("2");
+        }
+
+        private async void ModeMinusButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("3");
+        }
+
+        private async void LightPlusButton_Click(object sender, EventArgs e)
+        {
+            await TryWriteAsync("5");
+        }
+
+        private async void OnOfButton_Click(object sender, EventArgs e)
         {
             await TryWriteAsync("1");
         }

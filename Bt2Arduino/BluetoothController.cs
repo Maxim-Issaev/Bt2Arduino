@@ -15,7 +15,7 @@ using Java.Util;
 
 namespace Bt2Arduino
 {
-    
+
     public class BluetoothController
     {
         private static UUID mDeviceUUID;
@@ -74,11 +74,16 @@ namespace Bt2Arduino
                 await outStream.WriteAsync(buffer, 0, buffer.Length);
                 return true;
             }
-            catch (System.NullReferenceException)
-            { return false; }
-                
+            catch (System.IO.IOException)
+            {
+                return false;
+            }
+            catch (Java.IO.IOException)
+            {
+                return false;
+            }
         }
-        
+
     }
     public enum ConncetionSate
     {
