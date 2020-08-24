@@ -22,14 +22,15 @@ namespace Bt2Arduino
         private Spinner Spinner;
 
         public BluetoothController bluetoothController;
+        public MemoryController memoryController;
         
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             bluetoothController = new BluetoothController();
+            memoryController = new MemoryController(this);
 
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             
             ConnectButton = FindViewById<Button>(Resource.Id.button1);
@@ -39,9 +40,14 @@ namespace Bt2Arduino
             foreach (BluetoothDevice device in bluetoothController.BluetoothDevices)
             {
                 names.Add(device.Name);
+                if (memoryController.GetTargetAdress() == device.Address)
+                {
+                    SelectedID = names.Count;
+                }
             }
             ArrayAdapter adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, names);
             Spinner.Adapter = adapter;
+            Spinner.SetSelection(SelectedID-1);
             ConnectButton.Click += ConnectButton_ClickAsync;
 
             SendnButton = FindViewById<Button>(Resource.Id.button2);
@@ -51,14 +57,7 @@ namespace Bt2Arduino
 
         private async void SendnButton_ClickAsync(object sender, EventArgs e)
         {
-           if( await bluetoothController.WriteAsync("1")!=true)
-            {
-                Context context = Application.Context;
-                string text = "Ошибка";
-                ToastLength duration = ToastLength.Short;
-                var toast = Toast.MakeText(context, text, duration);
-                toast.Show();
-            }
+            await TryWriteAsync("1");
         }
 
         private async void ConnectButton_ClickAsync(object sender, EventArgs e)
@@ -89,6 +88,23 @@ namespace Bt2Arduino
         private void Spinner_ItemSelected1(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             SelectedID = Convert.ToInt32(e.Id);
+            List<string> adresses = new List<string>();
+            foreach (BluetoothDevice device in bluetoothController.BluetoothDevices)
+            {
+                adresses.Add(device.Address);
+            }
+            memoryController.SaveTargetAdress(adresses[SelectedID]);
+        }
+        private async Task TryWriteAsync(string message)
+        {
+            if (await bluetoothController.WriteAsync(message) != true)
+            {
+                Context context = Application.Context;
+                string text = "Ошибка";
+                ToastLength duration = ToastLength.Short;
+                var toast = Toast.MakeText(context, text, duration);
+                toast.Show();
+            }
         }
     }
 }

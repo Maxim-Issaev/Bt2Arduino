@@ -62,14 +62,21 @@ namespace Bt2Arduino
                 conncetionState = ConncetionSate.failed;
             }
         }
-        public async Task WriteAsync(string message)
+        public async Task<bool> WriteAsync(string message)
         {
-            uint messageLength = (uint)message.Length;
-            byte[] countBuffer = BitConverter.GetBytes(messageLength);
-            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            try
+            {
+                uint messageLength = (uint)message.Length;
+                byte[] countBuffer = BitConverter.GetBytes(messageLength);
+                byte[] buffer = Encoding.UTF8.GetBytes(message);
 
-            await outStream.WriteAsync(countBuffer, 0, countBuffer.Length);
-            await outStream.WriteAsync(buffer, 0, buffer.Length);
+                await outStream.WriteAsync(countBuffer, 0, countBuffer.Length);
+                await outStream.WriteAsync(buffer, 0, buffer.Length);
+                return true;
+            }
+            catch (System.NullReferenceException)
+            { return false; }
+                
         }
         
     }
