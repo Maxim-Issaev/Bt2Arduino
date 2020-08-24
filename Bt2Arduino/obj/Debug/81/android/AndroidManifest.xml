@@ -6,7 +6,7 @@
   <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="bl" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:name="android.app.Application" android:debuggable="true">
+  <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:label="Bt2Arduino" android:name="android.app.Application" android:debuggable="true">
     <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md530e360d6e887751630c8cb8d7320c899.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
