@@ -51,7 +51,14 @@ namespace Bt2Arduino
 
         private async void SendnButton_ClickAsync(object sender, EventArgs e)
         {
-            await bluetoothController.WriteAsync("1");
+           if( await bluetoothController.WriteAsync("1")!=true)
+            {
+                Context context = Application.Context;
+                string text = "Ошибка";
+                ToastLength duration = ToastLength.Short;
+                var toast = Toast.MakeText(context, text, duration);
+                toast.Show();
+            }
         }
 
         private async void ConnectButton_ClickAsync(object sender, EventArgs e)
