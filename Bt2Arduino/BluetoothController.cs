@@ -136,6 +136,18 @@ namespace Bt2Arduino
             socket.Close();
             await ConnectAsync(ReconectId);
         }
+        public bool Stop()
+        {
+            try
+            {
+                socket.Close();
+                return true;
+            }
+            catch (System.NullReferenceException)
+            {
+                return false;
+            }
+        }
 
     }
     public enum ConncetionSate

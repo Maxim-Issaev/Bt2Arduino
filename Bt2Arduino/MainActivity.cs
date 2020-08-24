@@ -31,6 +31,7 @@ namespace Bt2Arduino
         private Button ModePlusButton;
         private Button LightMinusButton;
         private Button MusicButton;
+        private Button DisconectButton;
 
         public static BluetoothController bluetoothController;
         public MemoryController memoryController;
@@ -81,6 +82,24 @@ namespace Bt2Arduino
             Switch1.CheckedChange += Switch1_CheckedChange;
             TextView = FindViewById<TextView>(Resource.Id.OutText);
 
+            DisconectButton = FindViewById<Button>(Resource.Id.DisconectButton);
+            DisconectButton.Click += DisconectButton_Click;
+        }
+
+        private void DisconectButton_Click(object sender, EventArgs e)
+        {
+            if (bluetoothController.Stop())
+            {
+                TextView.Text = "Состояние: отключено";
+            }
+            else
+            {
+                Context context = Application.Context;
+                string text = "Ошибка!";
+                ToastLength duration = ToastLength.Short;
+                var toast = Toast.MakeText(context, text, duration);
+                toast.Show();
+            }
         }
 
         private async void Switch1_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
@@ -180,6 +199,7 @@ namespace Bt2Arduino
                 ToastLength duration = ToastLength.Short;
                 var toast = Toast.MakeText(context, text, duration);
                 toast.Show();
+                TextView.Text = "Состояние: отключинено/ошибка";
             }
         }
     }
