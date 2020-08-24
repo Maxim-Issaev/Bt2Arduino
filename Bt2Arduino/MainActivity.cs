@@ -48,17 +48,18 @@ namespace Bt2Arduino
             Spinner = FindViewById<Spinner>(Resource.Id.spinner1);
             Spinner.ItemSelected += Spinner_ItemSelected1;
             List<string> names = new List<string>();
+           
             foreach (BluetoothDevice device in bluetoothController.BluetoothDevices)
             {
                 names.Add(device.Name);
                 if (memoryController.GetTargetAdress() == device.Address)
                 {
-                    SelectedID = names.Count;
+                    SelectedID = names.Count-1;
                 }
+                ArrayAdapter adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, names);
+                Spinner.Adapter = adapter;
+                Spinner.SetSelection(SelectedID);
             }
-            ArrayAdapter adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, names);
-            Spinner.Adapter = adapter;
-            Spinner.SetSelection(SelectedID-1);
             ConnectButton.Click += ConnectButton_ClickAsync;
 
             OnOfButton = FindViewById<Button>(Resource.Id.OnOfButton);
@@ -87,7 +88,15 @@ namespace Bt2Arduino
             if (Switch1.Checked==true)
             {
                 TextView.Text = "Состояние: Ожидает ввода";
-                await bluetoothController.Listen(TextView, Switch1);
+                await bluetoothController.Listen(TextView);
+            }
+            else
+            {
+             await   bluetoothController.ListenStopAsync();
+                if (bluetoothController.conncetionState==ConncetionSate.sucsesful)
+                {
+                    TextView.Text = "Состояние: подключено";
+                }
             }
         }
 
@@ -138,6 +147,7 @@ namespace Bt2Arduino
                     ToastLength duration = ToastLength.Short;
                     var toast = Toast.MakeText(context, text, duration);
                     toast.Show();
+                    TextView.Text = "Состояние: подключено";
 
                 }   
                 else

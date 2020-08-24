@@ -24,8 +24,12 @@ namespace Bt2Arduino
         private BluetoothSocket socket;
         public ConncetionSate conncetionState;
 
+        private bool Listening;
+
         private OutputStreamInvoker outStream = null;
         private InputStreamInvoker inStream = null;
+
+        private int ReconectId;
 
         public BluetoothController()
         {
@@ -42,6 +46,7 @@ namespace Bt2Arduino
         }
         public async Task ConnectAsync(int TargetId)
         {
+            ReconectId = TargetId;
             socket = BluetoothDevices[TargetId].CreateRfcommSocketToServiceRecord(mDeviceUUID);
             try
             {
@@ -88,16 +93,15 @@ namespace Bt2Arduino
                 return false;
             }
         }
-        public async Task Listen(TextView textView, Switch @switch)
+        public async Task Listen(TextView textView)
         {
-            bool Listening = true;
+            Listening = true;
             byte[] uintBuffer = new byte[sizeof(uint)]; // This reads the first 4 bytes which form an uint that indicates the length of the string message.
             byte[] textBuffer; // This will contain the string message.
 
             // Keep listening to the InputStream while connected.
             while (Listening)
             {
-                Listening = @switch.Checked;
                 try
                 {
                     // This one blocks until it gets 4 bytes.
@@ -113,6 +117,7 @@ namespace Bt2Arduino
                 }
                 catch (Java.IO.IOException e)
                 {
+                    textView.Text = "Состояние: Ошибка";
                     Listening = false;
                     break;
                 }
@@ -123,6 +128,13 @@ namespace Bt2Arduino
                     break;
                 }
             }
+            textView.Text = "Состояние: Отключено";
+        }
+        public async Task ListenStopAsync()
+        {
+            Listening = false;
+            socket.Close();
+            await ConnectAsync(ReconectId);
         }
 
     }
