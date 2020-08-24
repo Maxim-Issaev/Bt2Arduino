@@ -17,9 +17,9 @@ namespace Bt2Arduino
     public class MainActivity : AppCompatActivity
     {
         private int SelectedID=0;
-        //rivate TextView TextView;
+        private TextView TextView;
 
-       // private Switch Switch1;
+        private Switch Switch1;
 
         private Button ConnectButton;
         private Spinner Spinner;
@@ -76,19 +76,20 @@ namespace Bt2Arduino
             MusicButton = FindViewById<Button>(Resource.Id.MusicButton);
             MusicButton.Click += MusicButton_Click;
 
-           // Switch1 = FindViewById<Switch>(Resource.Id.switch1);
-           // Switch1.CheckedChange += Switch1_CheckedChange;
-           // TextView = FindViewById<TextView>(Resource.Id.OutText);
+            Switch1 = FindViewById<Switch>(Resource.Id.switch1);
+            Switch1.CheckedChange += Switch1_CheckedChange;
+            TextView = FindViewById<TextView>(Resource.Id.OutText);
 
         }
 
-      //  private async void Switch1_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
-      //  {
-       //     if (Switch1.Checked==true)
-      //      {
-               // await bluetoothController.Listen(Switch1, TextView);
-      //      }
-    //    }
+        private async void Switch1_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (Switch1.Checked==true)
+            {
+                TextView.Text = "Состояние: Ожидает ввода";
+                await bluetoothController.Listen(TextView, Switch1);
+            }
+        }
 
         private async void MusicButton_Click(object sender, EventArgs e)
         {

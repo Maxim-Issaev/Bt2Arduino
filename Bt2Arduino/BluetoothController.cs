@@ -50,6 +50,7 @@ namespace Bt2Arduino
                 {
                     outStream = (OutputStreamInvoker)socket.OutputStream;
                     conncetionState = ConncetionSate.sucsesful;
+                    inStream=(InputStreamInvoker)socket.InputStream;
                 }
                 else
                     conncetionState = ConncetionSate.failed;
@@ -81,6 +82,46 @@ namespace Bt2Arduino
             catch (Java.IO.IOException)
             {
                 return false;
+            }
+            catch (System.NullReferenceException)
+            {
+                return false;
+            }
+        }
+        public async Task Listen(TextView textView, Switch @switch)
+        {
+            bool Listening = true;
+            byte[] uintBuffer = new byte[sizeof(uint)]; // This reads the first 4 bytes which form an uint that indicates the length of the string message.
+            byte[] textBuffer; // This will contain the string message.
+
+            // Keep listening to the InputStream while connected.
+            while (Listening)
+            {
+                Listening = @switch.Checked;
+                try
+                {
+                    // This one blocks until it gets 4 bytes.
+                    await inStream.ReadAsync(uintBuffer, 0, uintBuffer.Length);
+                    uint readLength = BitConverter.ToUInt32(uintBuffer, 0);
+
+                    textBuffer = new byte[readLength];
+                    // Here we know for how many bytes we are looking for.
+                    await inStream.ReadAsync(textBuffer, 0, (int)readLength);
+
+                    string s = Encoding.UTF8.GetString(textBuffer);
+                    textView.Text = "Состояние:"+s;
+                }
+                catch (Java.IO.IOException e)
+                {
+                    Listening = false;
+                    break;
+                }
+                catch (System.NullReferenceException)
+                {
+                    textView.Text = "Состояние: Нет подключения";
+                    Listening = false;
+                    break;
+                }
             }
         }
 
