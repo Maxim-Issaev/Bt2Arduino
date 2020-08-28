@@ -1,4 +1,4 @@
-C:\Users\Maxim\source\repos\Bt2Arduino\Bt2Arduino\obj\Release\81\android\assets\Bt2Arduino.dll
+C:\Users\Maxim\source\repos\Bt2Arduino\Bt2Arduino\obj\Release\81\android\assets\BagControl.dll
 C:\Users\Maxim\source\repos\Bt2Arduino\Bt2Arduino\obj\Release\81\android\assets\Java.Interop.dll
 C:\Users\Maxim\source\repos\Bt2Arduino\Bt2Arduino\obj\Release\81\android\assets\Mono.Android.dll
 C:\Users\Maxim\source\repos\Bt2Arduino\Bt2Arduino\obj\Release\81\android\assets\mscorlib.dll

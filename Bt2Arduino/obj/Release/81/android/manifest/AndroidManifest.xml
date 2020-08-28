@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Bt2Arduino.Bt2Arduino" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0.0 Release" package="Maxim_Isaev.Bag_Control" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
   <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
-  <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:label="Bt2Arduino" android:name="android.app.Application">
-    <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md530e360d6e887751630c8cb8d7320c899.MainActivity">
+  <application android:allowBackup="true" android:icon="@drawable/web_hi_res_512" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:label="Bag Control" android:name="android.app.Application">
+    <activity android:label="@string/app_name" android:theme="@style/AppTheme" android:name="md51d5b265e0494adc68730a01163ba4761.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="Bt2Arduino.Bt2Arduino.mono.MonoRuntimeProvider.__mono_init__" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="Maxim_Isaev.Bag_Control.mono.MonoRuntimeProvider.__mono_init__" />
   </application>
 </manifest>

@@ -115,7 +115,7 @@ namespace Bt2Arduino
                     string s = Encoding.UTF8.GetString(textBuffer);
                     textView.Text = "Состояние:"+s;
                 }
-                catch (Java.IO.IOException e)
+                catch (Java.IO.IOException )
                 {
                     textView.Text = "Состояние: Ошибка";
                     Listening = false;

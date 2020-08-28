@@ -2381,6 +2381,9 @@ namespace Bt2Arduino
 			// aapt resource value: 0x7F0C0018
 			public const int auto = 2131492888;
 			
+			// aapt resource value: 0x7F010010
+			public const int AutoButton = 2130771984;
+			
 			// aapt resource value: 0x7F0C0007
 			public const int blocking = 2131492871;
 			
@@ -2389,9 +2392,6 @@ namespace Bt2Arduino
 			
 			// aapt resource value: 0x7F010003
 			public const int button1 = 2130771971;
-			
-			// aapt resource value: 0x7F010005
-			public const int button2 = 2130771973;
 			
 			// aapt resource value: 0x7F0C001B
 			public const int buttonPanel = 2131492891;
@@ -2471,6 +2471,9 @@ namespace Bt2Arduino
 			// aapt resource value: 0x7F0C0034
 			public const int ghost_view = 2131492916;
 			
+			// aapt resource value: 0x7F010006
+			public const int gridLayout1 = 2130771974;
+			
 			// aapt resource value: 0x7F0C0035
 			public const int home = 2131492917;
 			
@@ -2498,11 +2501,20 @@ namespace Bt2Arduino
 			// aapt resource value: 0x7F0C003D
 			public const int left = 2131492925;
 			
+			// aapt resource value: 0x7F010012
+			public const int LightMinusButton = 2130771986;
+			
+			// aapt resource value: 0x7F010008
+			public const int LightPlusButton = 2130771976;
+			
 			// aapt resource value: 0x7F0C000E
 			public const int line1 = 2131492878;
 			
 			// aapt resource value: 0x7F0C000F
 			public const int line3 = 2131492879;
+			
+			// aapt resource value: 0x7F010005
+			public const int linearLayout2 = 2130771973;
 			
 			// aapt resource value: 0x7F0C0040
 			public const int listMode = 2131492928;
@@ -2522,8 +2534,17 @@ namespace Bt2Arduino
 			// aapt resource value: 0x7F0C0045
 			public const int mini = 2131492933;
 			
+			// aapt resource value: 0x7F010009
+			public const int ModeMinusButton = 2130771977;
+			
+			// aapt resource value: 0x7F010011
+			public const int ModePlusButton = 2130771985;
+			
 			// aapt resource value: 0x7F0C0046
 			public const int multiply = 2131492934;
+			
+			// aapt resource value: 0x7F010013
+			public const int MusicButton = 2130771987;
 			
 			// aapt resource value: 0x7F0C0047
 			public const int navigation_header_container = 2131492935;
@@ -2542,6 +2563,12 @@ namespace Bt2Arduino
 			
 			// aapt resource value: 0x7F0C0013
 			public const int notification_main_column_container = 2131492883;
+			
+			// aapt resource value: 0x7F010007
+			public const int OnOfButton = 2130771975;
+			
+			// aapt resource value: 0x7F010015
+			public const int OutText = 2130771989;
 			
 			// aapt resource value: 0x7F0C004D
 			public const int parallax = 2131492941;
@@ -2671,6 +2698,9 @@ namespace Bt2Arduino
 			
 			// aapt resource value: 0x7F0C0076
 			public const int submit_area = 2131492982;
+			
+			// aapt resource value: 0x7F010014
+			public const int switch1 = 2130771988;
 			
 			// aapt resource value: 0x7F0C0077
 			public const int tabMode = 2131492983;
